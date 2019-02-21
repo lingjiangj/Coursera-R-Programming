@@ -4,14 +4,22 @@ pollutantmean <- function(directory,pollutant,id = 1:332){
     # 'id' is an integer vector indicating the monitor ID numbers to be used
     # Return the mean of the pollutant across all monitors list in the 'id' vector (ignoring NA values)
     # NOTE: Do not round the result!
-    file <- list.files(directory,full.names = True)
+    
+    # set working directory
+    setwd("~/文档/Week2")
+    # get a list of files in specdata directory
+    file <- list.files(directory,full.names = TRUE)
+    # initiate a data frame
     dat <- data.frame()
     for(i in id){
-        dat <- rbind(dat, read.csv(file[i])
+        dat <- rbind(dat,read.csv(file[i]))
     }
+
     mean(dat[,pollutant],na.rm = TRUE)
-
 }
-source("pollutantmean.R")
-pollutantmean("specdata", "sulfate", 1:10)
 
+# Quiz answers
+pollutantmean("specdata", "sulfate", 1:10)
+pollutantmean("specdata", "nitrate", 70:72)
+pollutantmean("specdata", "sulfate", 34)
+pollutantmean("specdata", "nitrate")
